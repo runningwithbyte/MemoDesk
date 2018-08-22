@@ -3,31 +3,19 @@ import axios from 'axios';
 
 import Reactotron from 'reactotron-react-native'
 
-
-export const requestLoadCatalogData = (props) => {
+export const requestGetPicsList = (deviceId) => {
     return dispatch => {
-        // axios.get('http://sportmax66.ru:3777/select')
-        //     //axios.get('https://sportmax66.ru/api/orders.php?token=N8GF3J-KL8F3NA')
-        //     .then(function (response) {
-        //         dispatch({ type: types.RESPONSE_LOAD_CATALOG_SUCCESS, payload: response })
-        //     })
-        //     .catch(function (error) {
-        //         Reactotron.log(error);
-        //         dispatch({ type: types.RESPONSE_LOAD_CATALOG_FAILURE, error })
-        //     })
-        //     .then(function () {
-        //         // always executed
-        //     });
-
-
-        // // fetch('https://sportmax66.ru:80')
-        // //     .then((response) => response.json())
-        // //     .then((responseJson) => {
-        // //         dispatch({ type: types.RESPONSE_LOAD_CATALOG_SUCCESS, payload: responseJson })
-        // //     })
-        // //     .catch((error) => {
-        // //         alert(error);
-        // //     });
+        axios.get('http://138.68.44.49:3777/getPicsList?deviceId=' + deviceId)
+            .then(function (response) {
+                dispatch({ type: types.RESPONSE_GET_PICS_LIST_SUCCESS, payload: response.data })
+            })
+            .catch(function (error) {
+                Reactotron.log(error);
+                dispatch({ type: types.RESPONSE_GET_PICS_LIST_FAILURE, error })
+            })
+            .then(function () {
+                // always executed
+            });
     }
 }
 

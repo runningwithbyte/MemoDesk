@@ -37,7 +37,8 @@ export default class MyDesk extends Component {
         <ScrollView>
           {
             this.props.data.devices.map((i, index) => {
-              return (<TouchableOpacity onPress={() => this._onClickDeviceListHandler(i.deviceId, i.deviceName)}><Text>{i.deviceName}</Text></TouchableOpacity>);
+              return (<TouchableOpacity onPress={() => this._onClickDeviceListHandler(i.deviceId, i.deviceName)}>
+                <View style={styles.item}><Text style={styles.itemText}>{i.deviceName}</Text></View></TouchableOpacity>);
             })
           }
         </ScrollView>
@@ -56,8 +57,19 @@ export default class MyDesk extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row',
   },
+  item: {
+    flex: 1,
+    alignSelf: 'stretch',
+    borderBottomWidth: 1,
+    borderBottomColor: '#c2c2c2',
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+    backgroundColor: 'white'
+  },
+  itemText: {
+    fontSize: 20
+  }
 });

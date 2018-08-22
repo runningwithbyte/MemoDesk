@@ -9,12 +9,6 @@ const initialState = {
 
 const Data = (state = initialState, action) => {
     switch (action.type) {
-        case types.RESPONSE_LOAD_CATALOG_SUCCESS: {
-            return {
-                ...state,
-                ..._.merge(state, action.payload)
-            }
-        }
         case types.ADD_NEW_DEVICE: {
             state.devices.push({ deviceId: action.deviceId, deviceName: action.deviceName });
             return {
@@ -28,6 +22,13 @@ const Data = (state = initialState, action) => {
             return {
                 ...state,
                 devices
+            }
+        }
+        case types.RESPONSE_GET_PICS_LIST_SUCCESS: {
+            const index = state.devices.findIndex(item => item.deviceId === action.payload.deviceId);
+            state.devices[index].fileList = action.payload.fileList;
+            return {
+                ...state
             }
         }
         case types.INIT: {

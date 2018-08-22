@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, Button, ScrollView, StyleSheet, TextInput } from "react-native";
+import { View, Text, Button, ScrollView, StyleSheet, Image } from "react-native";
 import { connect } from 'react-redux'
-import { removeDevice } from '../actions';
+import { removeDevice, requestGetPicsList } from '../actions';
 import HeaderRightButton from '../components/Device/HeaderRightButton';
 
 import Reactotron from 'reactotron-react-native'
@@ -17,6 +17,10 @@ class Device extends Component {
     this.props.navigation.setParams({ onClickRemoveDevice: this._onClickRemoveDeviceHandler });
   }
 
+  componentWillMount() {
+    this.props.dispatchRequestGetPicsList(this.state.deviceId);
+  }
+
   _onClickRemoveDeviceHandler = () => {
     this.props.dispatchRemoveDevice(this.state.deviceId);
     this.props.navigation.navigate('MyDesk');
@@ -24,7 +28,6 @@ class Device extends Component {
 
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
-    Reactotron.log(params);
     return {
       title: params.deviceName + ' (#' + params.deviceId + ')',
       headerRight: <HeaderRightButton onClick={() => params.onClickRemoveDevice()} />,
@@ -35,32 +38,46 @@ class Device extends Component {
   };
 
   render() {
-    return (<View style={styles.container} >
-      <ScrollView>
-        <Text>Device pics</Text>
-      </ScrollView>
-    </View >
-    );
+    const index = this.props.data.devices.findIndex(item => item.deviceId === this.state.deviceId);
+    if (index == -1) {
+      return <Text>No one pics!</Text>;
+    }
+    if (this.props.data.devices[index].fileList) {
+      return (
+        <View style={styles.container} >
+          <ScrollView>
+            {this.props.data.devices[index].fileList.map((item, index) => {
+              return (<View><Image
+                style={{ height: 350, width: 350 }}
+                source={{ uri: 'http://138.68.44.49/devices/' + this.state.deviceId + '/' + item.picName }}
+              /><Text></Text></View>);
+            })}
+          </ScrollView>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container} >
+          <ScrollView>
+            <Text>No one picture added!</Text>
+          </ScrollView>
+        </View>
+      );
+    }
+
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center'
   },
-  textInput: {
-    margin: 5,
-    padding: 5,
-    fontSize: 20,
-    width: 300,
-    backgroundColor: '#fff',
-    borderColor: 'black',
-    borderWidth: 1
-  }
+  image: {
+    flex: 1, width: null, height: null
+  },
 });
 
 const mapStateToProps = state => {
@@ -69,7 +86,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatchRemoveDevice: (deviceId) => dispatch(removeDevice(deviceId))
+    dispatchRemoveDevice: (deviceId) => dispatch(removeDevice(deviceId)),
+    dispatchRequestGetPicsList: (deviceId) => dispatch(requestGetPicsList(deviceId))
   }
 }
 
