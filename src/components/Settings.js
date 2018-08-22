@@ -13,9 +13,7 @@ export default class Settings extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      title: 'Доставка и Оплата',
-      headerLeft: null,
-      headerRight: <Icon name='shopping-bag' size={20} style={{ paddingRight: 15 }} />,
+      title: 'Settings',
       headerStyle: {
         backgroundColor: "#ffffff", borderBottomColor: '#d0d0d0', borderBottomWidth: 2,
       },

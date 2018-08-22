@@ -3,7 +3,9 @@ import * as _ from 'lodash'
 import Reactotron from 'reactotron-react-native'
 
 
-const initialState = [];
+const initialState = {
+    devices: []
+};
 
 const Data = (state = initialState, action) => {
     switch (action.type) {
@@ -13,9 +15,15 @@ const Data = (state = initialState, action) => {
                 ..._.merge(state, action.payload)
             }
         }
+        case types.ADD_NEW_DEVICE: {
+            state.devices.push({ deviceId: action.deviceId, deviceName: action.deviceName });
+            return {
+                ...state,
+                devices: state.devices
+            }
+        }
         case types.INIT: {
             return {
-                //...state,
                 ...initialState
             }
         }

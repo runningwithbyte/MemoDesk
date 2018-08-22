@@ -19,12 +19,14 @@ import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // Main Tabs
 import MyDeskScreen from './containers/containerMyDesk';
+import AddDeviceScreen from './containers/AddDevice';
 import SettingsScreen from './containers/containerSettings';
 
 import * as _const from './constants';
 
 const MemoStackNavigator = createStackNavigator({
   MyDesk: MyDeskScreen,
+  AddDevice: AddDeviceScreen
 },
   {
     initialRouteName: 'MyDesk',
@@ -51,7 +53,7 @@ const TabNav = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: "My Desk",
       tabBarIcon: ({ tintColor }) => (
-        <IconMaterialCommunityIcons name='pill' size={25} color={tintColor} />
+        <IconIonicons name='ios-keypad' size={25} color={tintColor} />
       )
     }
   },
@@ -60,14 +62,14 @@ const TabNav = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: "Settings",
       tabBarIcon: ({ tintColor }) => (
-        <IconMaterialCommunityIcons name='truck-fast' size={25} color={tintColor} />
+        <IconIonicons name='ios-settings' size={25} color={tintColor} />
       )
     }
   }
 }, {
     initialRouteName: 'MemoTab',
     tabBarOptions: {
-      activeTintColor: '#fe0100',
+      activeTintColor: '#e30047',
       inactiveTintColor: '#181818',
       labelStyle: {
         fontSize: 13
