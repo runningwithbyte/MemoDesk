@@ -40,7 +40,7 @@ class Device extends Component {
   render() {
     const index = this.props.data.devices.findIndex(item => item.deviceId === this.state.deviceId);
     if (index == -1) {
-      return <Text>No one pics!</Text>;
+      return <Text>No one picture added!</Text>;
     }
     if (this.props.data.devices[index].fileList) {
       return (
@@ -64,7 +64,6 @@ class Device extends Component {
         </View>
       );
     }
-
   }
 }
 

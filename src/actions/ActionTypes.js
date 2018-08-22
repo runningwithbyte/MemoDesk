@@ -8,4 +8,3 @@ export const RESPONSE_GET_PICS_LIST_FAILURE = 'RESPONSE_GET_PICS_LIST_FAILURE';
 
 // common
 export const INIT = 'INIT';
-export const SHOW_TOAST = 'SHOW_TOAST';

@@ -19,13 +19,6 @@ export const requestGetPicsList = (deviceId) => {
     }
 }
 
-export const showToast = (message) => {
-    return {
-        type: types.SHOW_TOAST,
-        message
-    }
-}
-
 export const addNewDevice = (deviceId, deviceName) => {
     return {
         type: types.ADD_NEW_DEVICE,
