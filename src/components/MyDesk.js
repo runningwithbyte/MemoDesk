@@ -26,9 +26,8 @@ export default class MyDesk extends Component {
       title: 'Memo Desk',
       headerRight: <HeaderRightButton onClick={() => params.onClickAddDevice()} />,
       headerStyle: {
-        backgroundColor: "#ffffff", borderBottomColor: '#d0d0d0', borderBottomWidth: 2,
-      },
-      headerTintColor: 'black'
+        borderBottomColor: '#d0d0d0', borderBottomWidth: 1,
+      }
     }
   };
 

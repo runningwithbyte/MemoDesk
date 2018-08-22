@@ -16,8 +16,12 @@ class AddDevice extends Component {
   }
 
   onClickAddButtonHandler = () => {
-    this.props.dispatchAddNewDevice(this.state.deviceId, this.state.deviceName);
-    this.props.navigation.goBack();
+    if (this.state.deviceId && this.state.deviceName) {
+      this.props.dispatchAddNewDevice(this.state.deviceId, this.state.deviceName);
+      this.props.navigation.goBack();
+    } else {
+      alert('Please input `Name` and `ID`!');
+    }
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -25,19 +29,18 @@ class AddDevice extends Component {
     return {
       title: 'Add New Device',
       headerStyle: {
-        backgroundColor: "#ffffff", borderBottomColor: '#d0d0d0', borderBottomWidth: 1,
-      },
-      headerTintColor: 'black'
+        borderBottomColor: '#d0d0d0', borderBottomWidth: 1,
+      }
     }
   };
 
   render() {
     return (<View style={styles.container} >
       <ScrollView>
-        <Text>Type here Name and new Memo Device ID</Text>
+        <Text>Type here new Memo Name and Device ID</Text>
         <TextInput style={styles.textInput} onChangeText={deviceId => this.setState({ deviceId })} value={this.state.deviceId} placeholder='ABC-123-XYZ...' />
         <TextInput style={styles.textInput} onChangeText={deviceName => this.setState({ deviceName })} value={this.state.deviceName} placeholder='Kate`s Memo' />
-        <Button onPress={this.onClickAddButtonHandler} title='ADD' />
+        <Button onPress={this.onClickAddButtonHandler} title='Save' />
       </ScrollView>
     </View >
     );

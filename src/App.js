@@ -31,7 +31,7 @@ const MemoStackNavigator = createStackNavigator({
   {
     initialRouteName: 'MyDesk',
     navigationOptions: {
-      headerTintColor: '#2a8dfc',
+      //headerTintColor: '#2a8dfc',
       //headerBackTitle: ' ',
     }
   });
@@ -42,7 +42,7 @@ const SettingsStackNavigator = createStackNavigator({
   {
     initialRouteName: 'Settings',
     navigationOptions: {
-      headerTintColor: '#2a8dfc',
+      //headerTintColor: '#2a8dfc',
       //headerBackTitle: ' ',
     }
   });
