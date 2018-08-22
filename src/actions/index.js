@@ -44,3 +44,10 @@ export const addNewDevice = (deviceId, deviceName) => {
         deviceId, deviceName
     }
 }
+
+export const removeDevice = (deviceId) => {
+    return {
+        type: types.REMOVE_DEVICE,
+        deviceId
+    }
+}

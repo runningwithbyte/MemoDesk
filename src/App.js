@@ -20,19 +20,21 @@ import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 // Main Tabs
 import MyDeskScreen from './containers/containerMyDesk';
 import AddDeviceScreen from './containers/AddDevice';
+import DeviceScreen from './containers/Device';
 import SettingsScreen from './containers/containerSettings';
 
 import * as _const from './constants';
 
 const MemoStackNavigator = createStackNavigator({
   MyDesk: MyDeskScreen,
-  AddDevice: AddDeviceScreen
+  AddDevice: AddDeviceScreen,
+  Device: DeviceScreen
 },
   {
     initialRouteName: 'MyDesk',
     navigationOptions: {
       //headerTintColor: '#2a8dfc',
-      //headerBackTitle: ' ',
+      headerBackTitle: 'Back',
     }
   });
 
@@ -53,7 +55,7 @@ const TabNav = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: "My Desk",
       tabBarIcon: ({ tintColor }) => (
-        <IconIonicons name='ios-keypad' size={25} color={tintColor} />
+        <IconIonicons name='ios-keypad' size={26} color={tintColor} />
       )
     }
   },
@@ -62,7 +64,7 @@ const TabNav = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: "Settings",
       tabBarIcon: ({ tintColor }) => (
-        <IconIonicons name='ios-settings' size={25} color={tintColor} />
+        <IconIonicons name='ios-settings' size={26} color={tintColor} />
       )
     }
   }
@@ -71,9 +73,7 @@ const TabNav = createBottomTabNavigator({
     tabBarOptions: {
       activeTintColor: '#e30047',
       inactiveTintColor: '#181818',
-      labelStyle: {
-        fontSize: 13
-      },
+      showLabel: false,
       style: {
         backgroundColor: 'white',
         borderTopWidth: 1,

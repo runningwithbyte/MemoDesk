@@ -22,6 +22,14 @@ const Data = (state = initialState, action) => {
                 devices: state.devices
             }
         }
+        case types.REMOVE_DEVICE: {
+            const devices = state.devices.filter(i => i.deviceId !== action.deviceId);
+            if (!devices) devices = [];
+            return {
+                ...state,
+                devices
+            }
+        }
         case types.INIT: {
             return {
                 ...initialState
